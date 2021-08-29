@@ -1,9 +1,7 @@
 const env = process.env.NODE_ENV || 'development';
-const exphbs = require('express-handlebars');
 const config = require('./config/config')[env];
 const app = require('express')();
 const mongoose = require('mongoose');
-const cookieParser = require('cookie-parser');
 const db = mongoose.connection;
 
 require('dotenv').config()

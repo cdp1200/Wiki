@@ -15,32 +15,35 @@
             </div>
 
             <nav>
-                <a href="index.html">Main Page</a>
-                <a href="all-articles.html">All Articles</a>
+                <a href="/">Main Page</a>
+                <a href="/all-articles">All Articles</a>
                 <form>
                     <input type="text">
                     <input type="submit" value="Search">
                 </form>
-                <a href="create.html">Create New Article</a>
+                <a href="/create">Create New Article</a>
             </nav>
         </aside>
         <div id="container">
             <header>
-                <a href="login.html">Login</a>
-                <a href="register.html">Register</a>
-                <span>Welcome, Bob!</span>
-                <a href="#">[Logout]</a>
+                <a href="/register">Register</a>
+                {{#if validUser}}
+                <span>Welcome, {{validUser.username}}!</span>
+                <a href="/logout">[Logout]</a>
+                {{else}}
+                <span>Welcome, Guest!</span>
+                {{/if}}
             </header>
             <main>
                 <h1>Welcome to KingUni Wiki!</h1>
                 <section>
                     <h2>Login</h2>
                     <div class="spacer">
-                        <form>
+                            <form action='/loginPost' method="POST">
                             <label>Username:</label>
-                            <input type="text">
+                            <input type="text" class="username" name='username'>
                             <label>Password:</label>
-                            <input type="password">
+                            <input type="password" class='password' name='password'>
                             <input type="submit" value="Login">
                         </form>
                     </div>
