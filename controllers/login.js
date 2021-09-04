@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const User = require('../models/user');
 
-require('dotenv').config()
+require('dotenv').config();
 
 function pageRender(req, res) {
     if(req.cookies.token) {
@@ -24,12 +24,10 @@ async function pagePost(req, res) {
                 var token = jwt.sign(payload, secret, options);
                 // console.log(token);
                 res.cookie('token', token, { httpOnly: true, maxAge: 1000 * 1000 });
-                res.cookie("loggedIn", true);
                 res.redirect("/");
             }
         })
     })
-    // res.redirect('/');
 }
 
 module.exports = {

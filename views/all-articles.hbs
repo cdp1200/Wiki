@@ -21,15 +21,21 @@
                     <input type="text">
                     <input type="submit" value="Search">
                 </form>
+                {{#if validUser}}
                 <a href="/create">Create New Article</a>
+                {{/if}}
             </nav>
         </aside>
         <div id="container">
             <header>
+                {{#if validUser}}
+                <span>Welcome, {{validUser.username}}!</span>
+                <a href="/logout">[Logout]</a>
+                {{else}}
                 <a href="/login">Login</a>
                 <a href="/register">Register</a>
-                <span>Welcome, Bob!</span>
-                <a href="#">[Logout]</a>
+                <span>Welcome, Guest!</span>
+                {{/if}}
             </header>
             <main>
                 <h1>Welcome to KingUni Wiki!</h1>
@@ -37,21 +43,11 @@
                     <h2>All articles</h2>
                     <div class="spacer">
                         <ul>
+                            {{#each articles}}
                             <li>
-                                <a href="/article">Astronomy</a>
+                                <a href="/article/{{_id}}">{{title}}</a>
                             </li>
-                            <li>
-                                <a href="/article">Galaxy</a>
-                            </li>
-                            <li>
-                                <a href="/article">Planet</a>
-                            </li>
-                            <li>
-                                <a href="/article">Star</a>
-                            </li>
-                            <li>
-                                <a href="/article">Telescope</a>
-                            </li>
+                            {{/each}}
                         </ul>
                     </div>
                 </section>
