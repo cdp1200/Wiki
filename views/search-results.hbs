@@ -29,8 +29,12 @@
             <header>
                 <a href="/login">Login</a>
                 <a href="/register">Register</a>
-                <span>Welcome, Bob!</span>
-                <a href="#">[Logout]</a>
+                {{#if validUser}}
+                <span>Welcome, {{validUser.username}}!</span>
+                <a href="/logout">[Logout]</a>
+                {{else}}
+                <span>Welcome, Guest!</span>
+                {{/if}}
             </header>
             <main>
                 <h1>Welcome to KingUni Wiki!</h1>

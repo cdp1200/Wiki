@@ -21,27 +21,36 @@
                     <input type="text">
                     <input type="submit" value="Search">
                 </form>
+                {{#if validUser}}
                 <a href="/create">Create New Article</a>
+                {{/if}}
             </nav>
         </aside>
         <div id="container">
             <header>
+                {{#if validUser}}
+                <span>Welcome, {{validUser.username}}!</span>
+                <a href="/logout">[Logout]</a>
+                {{else}}
                 <a href="/login">Login</a>
                 <a href="/register">Register</a>
-                <span>Welcome, Bob!</span>
-                <a href="#">[Logout]</a>
+                <span>Welcome, Guest!</span>
+                {{/if}}
             </header>
             <main>
                 <h1>Welcome to KingUni Wiki!</h1>
                 <div class="spacer">
-                    <h2>Astronomy
+                    <h2>{{theArticle.title}}
                         <div class="controls">
-                            <a href="/edit">[edit]</a>
+                            {{#if validUser}}
+                            <a href="/edit/{{theArticle._id}}">[edit]</a>
                             <a href="/history">[delete]</a>
+                            {{/if}}
                         </div>
                     </h2>
                     <article>
-                        <p>
+                        {{theArticle.description}}
+                        {{!-- <p>
                             Astronomy is a natural science that studies celestial objects and phenomena. It applies mathematics, physics, and chemistry,
                             in an effort to explain the origin of those objects and phenomena and their evolution. Objects
                             of interest include planets, moons, stars, galaxies, and comets; the phenomena include supernova
@@ -69,7 +78,7 @@
                             Astronomy is one of the few sciences where amateurs still play an active role, especially in the discovery and observation
                             of transient phenomena. Amateur astronomers have made and contributed to many important astronomical
                             discoveries, such as finding new comets.
-                        </p>
+                        </p> --}}
                     </article>
                 </div>
             </main>

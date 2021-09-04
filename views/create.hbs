@@ -21,15 +21,14 @@
                     <input type="text">
                     <input type="submit" value="Search">
                 </form>
-                <a href="/create">Create New Article</a>
             </nav>
         </aside>
         <div id="container">
             <header>
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
-                <span>Welcome, Bob!</span>
-                <a href="#">[Logout]</a>
+                {{#if validUser}}
+                <span>Welcome, {{validUser.username}}!</span>
+                <a href="/logout">[Logout]</a>
+                {{/if}}
             </header>
             <main>
                 <h1>Welcome to KingUni Wiki!</h1>
@@ -39,11 +38,11 @@
                 <section>
                     <h2>Create new article</h2>
                     <div class="spacer">
-                        <form>
+                        <form action='/createArticle' method="POST">
                             <label>Article title</label>
-                            <input type="text" class="title">
+                            <input type="text" class="title" name="title">
                             <label>Content</label>
-                            <textarea></textarea>
+                            <textarea type="text" class="description" name="description"></textarea>
                             <input type="submit" value="Submit">
                         </form>
                     </div>
